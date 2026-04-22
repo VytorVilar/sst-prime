@@ -1018,3 +1018,182 @@ function iniciarAutoBackupFake(){
   },30000);
 
 }
+
+/* ==================================================
+SISTEMA DE SENHA PREMIUM
+SENHA ALTERADA PARA: SG393
+LIBERA 1x POR SESSÃO
+SUBSTITUA TODO BLOCO ANTIGO DA SENHA NO app.js
+================================================== */
+
+/* ==================================================
+SENHA REAL:
+SG393
+
+BASE64:
+U0czOTM=
+================================================== */
+
+const SENHA_HASH = "U0czOTM=";
+
+/* abas protegidas */
+const ABAS_PROTEGIDAS = [
+  "riscos",
+  "empresas",
+  "w2h",
+  "painel"
+];
+
+/* chave da sessão */
+const CHAVE_ACESSO = "sst_prime_autorizado";
+
+/* página clicada */
+let paginaBloqueada = "";
+
+/* ==================================================
+INICIAR
+================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  iniciarSistemaSenha();
+});
+
+/* ==================================================
+MAIN
+================================================== */
+
+function iniciarSistemaSenha(){
+
+  const modal   = document.getElementById("senhaModal");
+  const input   = document.getElementById("senhaInput");
+  const entrar  = document.getElementById("confirmSenha");
+  const fechar  = document.getElementById("cancelSenha");
+
+  if(!modal) return;
+
+  document.addEventListener("click", function(e){
+
+    const botao = e.target.closest("[data-page]");
+    if(!botao) return;
+
+    const pagina = botao.dataset.page;
+
+    if(!ABAS_PROTEGIDAS.includes(pagina)) return;
+
+    /* já liberado nesta sessão */
+    if(sessionStorage.getItem(CHAVE_ACESSO) === "ok"){
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    paginaBloqueada = pagina;
+
+    abrirSenhaModal();
+
+  });
+
+  entrar.addEventListener("click", validarSenha);
+  fechar.addEventListener("click", fecharSenhaModal);
+
+  input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      validarSenha();
+    }
+  });
+
+  modal.addEventListener("click", function(e){
+    if(e.target === modal){
+      fecharSenhaModal();
+    }
+  });
+
+}
+
+/* ==================================================
+ABRIR
+================================================== */
+
+function abrirSenhaModal(){
+
+  const modal = document.getElementById("senhaModal");
+  const input = document.getElementById("senhaInput");
+  const erro  = document.getElementById("senhaErro");
+
+  input.value = "";
+  erro.innerText = "";
+
+  modal.classList.add("show");
+
+  setTimeout(() => input.focus(),100);
+
+}
+
+/* ==================================================
+FECHAR
+================================================== */
+
+function fecharSenhaModal(){
+
+  document
+    .getElementById("senhaModal")
+    .classList.remove("show");
+
+}
+
+/* ==================================================
+VALIDAR
+================================================== */
+
+function validarSenha(){
+
+  const input = document.getElementById("senhaInput");
+  const erro  = document.getElementById("senhaErro");
+
+  const senhaReal = atob(SENHA_HASH);
+
+  if(input.value === senhaReal){
+
+    sessionStorage.setItem(CHAVE_ACESSO,"ok");
+
+    fecharSenhaModal();
+
+    abrirPaginaProtegida(paginaBloqueada);
+
+  }else{
+
+    erro.innerText = "Senha incorreta.";
+    input.value = "";
+    input.focus();
+
+  }
+
+}
+
+/* ==================================================
+ABRIR PÁGINA
+================================================== */
+
+function abrirPaginaProtegida(id){
+
+  if(typeof showPage === "function"){
+    showPage(id);
+    return;
+  }
+
+  if(typeof openPage === "function"){
+    openPage(id);
+    return;
+  }
+
+  document.querySelectorAll(".page")
+    .forEach(sec => sec.classList.remove("active"));
+
+  const alvo = document.getElementById(id);
+
+  if(alvo){
+    alvo.classList.add("active");
+  }
+
+}
