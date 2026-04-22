@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SST PRIME</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="CSS/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div class="loading-screen" id="loadingScreen">
+
+  <div class="loader-box">
+    <h1>SST <span>PRIME</span></h1>
+    <div class="loader-line"></div>
+    <p>Inicializando plataforma...</p>
+  </div>
+
+</div>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div>
+
+      <div class="brand">
+        <h1>SST <span>PRIME</span></h1>
+        <small>Performance Máxima</small>
+      </div>
+
+      <nav class="menu">
+
+        <button class="nav-btn active" data-page="home">
+          <span>🏠</span> Início
+        </button>
+
+        <button class="nav-btn" data-page="epis">
+          <span>📦</span> EPIs
+        </button>
+
+        <button class="nav-btn" data-page="riscos">
+          <span>⚠️</span> Riscos
+        </button>
+
+        <button class="nav-btn" data-page="empresas">
+          <span>🏢</span> Empresas
+        </button>
+
+        <button class="nav-btn" data-page="frases">
+          <span>📚</span> Frases
+        </button>
+
+        <button class="nav-btn" data-page="w2h">
+          <span>🧠</span> 5W2H
+        </button>
+
+        <button class="nav-btn" data-page="nrs">
+          <span>📖</span> NRs
+        </button>
+
+        <button class="nav-btn" data-page="painel">
+          <span>🛠</span> Painel
+        </button>
+
+        <button class="nav-btn premium-btn" data-page="dashboard">
+          <span>📊</span> Dashboard Pro
+        </button>
+
+      </nav>
+
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="status-dot"></div>
+      Sistema Online
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="top-left">
+        <h2 id="pageTitle">Dashboard Principal</h2>
+        <small>Plataforma Inteligente SST</small>
+      </div>
+
+      <div class="top-right">
+
+        <div class="live-clock" id="clock">
+          00:00:00
+        </div>
+
+        <div class="user-box">
+
+          <div class="avatar">
+            T
+          </div>
+
+          <div>
+            <strong>Técnico</strong>
+            <small>Administrador</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <!-- HOME -->
+      <section class="page active" id="home">
+
+        <div class="hero-card">
+
+          <div>
+            <small>PLATAFORMA OFICIAL</small>
+            <h1>SST PRIME</h1>
+            <p>Segurança Inteligente. Performance Máxima.</p>
+          </div>
+
+          <button class="hero-btn">
+            Acessar Recursos
+          </button>
+
+        </div>
+
+        <div class="kpi-grid">
+
+          <div class="kpi-card">
+            <small>EPIs</small>
+            <h3 id="kpiEpis">0</h3>
+            <p>Cadastrados</p>
+          </div>
+
+          <div class="kpi-card">
+            <small>Riscos</small>
+            <h3 id="kpiRiscos">0</h3>
+            <p>Mapeados</p>
+          </div>
+
+          <div class="kpi-card">
+            <small>Empresas</small>
+            <h3 id="kpiEmpresas">0</h3>
+            <p>Ativas</p>
+          </div>
+
+          <div class="kpi-card">
+            <small>NRs</small>
+            <h3 id="kpiNrs">0</h3>
+            <p>Disponíveis</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- EPIS -->
+      <section class="page" id="epis">
+
+  <div class="section-head epis-head">
+
+    <h2>EPIs</h2>
+
+    <div class="filters-area">
+
+      <!-- BUSCA -->
+      <input
+        type="text"
+        id="searchEpi"
+        class="search-input"
+        placeholder="Buscar EPI..."
+      >
+
+      <!-- FILTRO NOVO -->
+      <div class="filter-box">
+
+        <button type="button" class="filter-trigger" id="catTrigger">
+          <span id="catLabel">📂 Todas Categorias</span>
+          <i>⌄</i>
+        </button>
+
+        <div class="filter-menu" id="catMenu">
+
+          <div class="filter-item active" data-cat="">
+            📂 Todas Categorias
+          </div>
+
+          <div class="filter-item" data-cat="Calçados">
+            🥾 Calçados
+          </div>
+
+          <div class="filter-item" data-cat="Luvas">
+            🧤 Luvas
+          </div>
+
+          <div class="filter-item" data-cat="Óculos">
+            👓 Óculos
+          </div>
+
+          <div class="filter-item" data-cat="Máscaras">
+            😷 Máscaras
+          </div>
+
+          <div class="filter-item" data-cat="Auditiva">
+            🎧 Proteção Auditiva
+          </div>
+
+          <div class="filter-item" data-cat="Facial">
+            🛡 Proteção Facial
+          </div>
+
+          <div class="filter-item" data-cat="Aventais">
+            🦺 Aventais
+          </div>
+
+          <div class="filter-item" data-cat="Térmico">
+            🧥 Vestuário Térmico
+          </div>
+
+          <div class="filter-item" data-cat="Colete">
+            🦺 Colete
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="grid" id="epiList"></div>
+
+</section>
+
+      <!-- RISCOS -->
+      <section class="page" id="riscos">
+
+        <div class="section-head">
+          <h2>Mapa de Riscos</h2>
+          <input type="text" placeholder="Buscar risco...">
+        </div>
+
+        <div class="grid" id="riskList"></div>
+
+      </section>
+
+      <!-- EMPRESAS -->
+      <section class="page" id="empresas">
+
+        <div class="section-head">
+          <h2>Empresas</h2>
+          <input type="text" placeholder="Buscar empresa...">
+        </div>
+
+        <div class="grid" id="empresaList"></div>
+
+      </section>
+
+      <!-- FRASES -->
+      <section class="page" id="frases">
+
+        <div class="panel-card">
+
+          <h2>Gerador de Frases</h2>
+
+          <textarea placeholder="Digite um nome por linha..."></textarea>
+
+          <input type="text" placeholder="Empresa">
+
+          <input type="text" placeholder="Data">
+
+          <button>Gerar Conteúdo</button>
+
+        </div>
+
+      </section>
+
+      <!-- 5W2H -->
+      <section class="page" id="w2h">
+        <div class="grid" id="w2hList"></div>
+      </section>
+
+      <!-- NRS -->
+      <section class="page" id="nrs">
+        <div class="grid" id="nrList"></div>
+      </section>
+
+      <!-- PAINEL -->
+      <section class="page" id="painel">
+        <div class="grid" id="painelList"></div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section class="page" id="dashboard">
+
+        <div class="pro-metrics">
+
+          <div class="metric-card">
+            <small>EPIs Ativos</small>
+            <h2 class="counter" id="dashEpis">0</h2>
+            <span>Atualizado</span>
+          </div>
+
+          <div class="metric-card">
+            <small>Riscos</small>
+            <h2 class="counter" id="dashRiscos">0</h2>
+            <span>Atualizado</span>
+          </div>
+
+          <div class="metric-card">
+            <small>Empresas</small>
+            <h2 class="counter" id="dashEmpresas">0</h2>
+            <span>Atualizado</span>
+          </div>
+
+          <div class="metric-card premium">
+            <small>Performance</small>
+            <h2>98%</h2>
+            <span>Sistema saudável</span>
+          </div>
+
+        </div>
+
+        <div class="dashboard-pro-grid">
+
+          <div class="glass-card large">
+
+            <h3>Indicadores Gerais</h3>
+
+            <div class="chart-box">
+              <canvas id="chart1"></canvas>
+            </div>
+
+          </div>
+
+          <div class="glass-card">
+
+            <h3>Alertas Inteligentes</h3>
+
+            <ul class="alert-list" id="alertList"></ul>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="JS/data.js"></script>
+<script src="JS/app.js"></script>
+
+</body>
+</html>
