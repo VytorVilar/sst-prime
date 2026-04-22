@@ -25,7 +25,7 @@ Plataforma premium de Segurança do Trabalho desenvolvida com foco em performanc
 
 ## 🌐 Acesse Online
 
-[🔗 Abrir Sistema](https://SEUUSUARIO.github.io/sst-prime)
+[🔗 Abrir Sistema](https://vytorvilar.github.io/sst-prime/)
 
 ---
 
